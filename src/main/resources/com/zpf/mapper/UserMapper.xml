@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpf.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.zpf.dto.User">
+        <id column="user_id" property="userId" jdbcType="DECIMAL" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+        <result column="birthday" property="birthday" jdbcType="DATE" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="class_table_id" property="classTableId" jdbcType="VARCHAR" />
+        <result column="ic" property="ic" jdbcType="VARCHAR" />
+        <result column="creation_date" property="creationDate" jdbcType="DATE" />
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE" />
+        <result column="is_work" property="isWork" jdbcType="DECIMAL" />
+        <result column="school" property="school" jdbcType="VARCHAR" />
+        <result column="head" property="head" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <update id="updateUser">
+        UPDATE User
+          <set>
+              last_update_date = now(),
+              <if test="password != null">password = #{password},</if>
+              <if test="roleId != null">role_id = #{roleId},</if>
+              <if test="birthday != null">birthday = #{birthday},</if>
+              <if test="address != null">address = #{address},</if>
+              <if test="ic != null">ic = #{ic},</if>
+              <if test="classTableId != null">class_table_id = #{classTableId},</if>
+              <if test="email != null">email = #{email}</if>
+          </set>
+        <where>
+            <if test="userId != null"> user_id = #{userId}</if>
+            <if test="email != null">AND email = #{email}</if>
+        </where>
+    </update>
+
+    <select id="queryUser" resultMap="BaseResultMap" parameterType="com.zpf.dto.User">
+        SELECT *
+        FROM user
+        <where>
+            <if test="userId != null"> user_id = #{userId}</if>
+            <if test="email != null">AND email = #{email}</if>
+            <if test="password != null">AND password = #{password}</if>
+            <if test="ic != null">AND ic = #{ic}</if>
+        </where>
+    </select>
+
+    <insert id="insertUser" parameterType="com.zpf.dto.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (password,email,creation_date,last_update_date,head)
+        VALUES (#{password},#{email},now(),now(),"jpg/head/4.png")
+    </insert>
+</mapper>

@@ -1,0 +1,187 @@
+/* modal 模态框*/
+#invite-user .modal-body {
+    overflow: hidden;
+}
+
+#invite-user .modal-body .form-label {
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+#invite-user .modal-body .form-invite {
+    width: 80%;
+    padding: 6px 12px;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    float: left;
+    margin-right: 10px;
+}
+
+#invite-user .modal-body .msg-modal-style {
+    background-color: #7dd383;
+    margin-top: 10px;
+    padding: 6px 0;
+    text-align: center;
+    width: 100%;
+}
+
+#invite-user .modal-body .modal-flash {
+    position: absolute;
+    top: 53px;
+    right: 74px;
+    z-index: 999;
+}
+
+.home-section .home-section-footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.home-section .home-section-footer a {
+    display: inline-block;
+    width: 220px;
+    padding: 12px;
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid gainsboro;
+    border-radius: 40px;
+    letter-spacing: 4px;
+    background: whitesmoke;
+
+    letter-spacing: 4px;
+    text-shadow: 0 0 1px #999;
+    box-shadow: 0 2px 2px 1px ghostwhite;
+}
+
+.home-section .home-section-footer a:hover {
+    background: lightgray;
+    box-shadow: 0 2px 2px 1px whitesmoke;
+    color: #30373e;
+}
+
+/*学习主页*/
+.home-section {
+    padding: 70px 0;
+    background: #f7f7f7;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.home-section .home-section-header {
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.home-section .home-section-title {
+    margin-bottom: 10px;
+    color: whitesmoke;
+    font-size: 30px;
+}
+
+.home-section .home-section-desc {
+    color: whitesmoke;
+    font-size: 16px;
+}
+
+.learn-path-name {
+    padding: 30px 0 15px;
+    color: #666;
+    font-size: 18px;
+}
+
+.learn-path-courses {
+    padding: 0 0 30px;
+    color: #a4a4a4;
+    font-size: 14px;
+}
+
+.learn-path-item {
+    position: relative;
+    bottom: 0;
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 1px 2px 0 #ddd;
+    transition: bottom .1s;
+}
+
+.learn-path-item:hover {
+    bottom: 15px;
+    box-shadow: 10px 10px 5px white;
+}
+
+/*开始学习按钮*/
+.home-courses-btn {
+    display: inline-block;
+    padding: 13px 50px;
+    color: #fff;
+    background: #0193b7;
+    font-size: 15px;
+    letter-spacing: 4px;
+    border: 1px solid #063e53;
+    border-radius: 20px;
+    text-shadow: 0 0 1px #999;
+    box-shadow: 0 2px 2px 1px #063e53;
+    width: 200px;
+    height: 50px;
+    margin-top: 40px;
+}
+
+.home-courses-btn:focus, .home-courses-btn:hover {
+    background: deepskyblue;
+    border: 1px solid dodgerblue;
+}
+
+/*主页特点展示*/
+.home-features {
+    padding: 70px;
+    background: #d1c5b7;
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+}
+
+.home-header .navbar-nav .dropdown .dropdown-menu {
+    left: -30px;
+    min-width: 130px;
+    text-align: center;
+    border-width: 0;
+    background: white;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}

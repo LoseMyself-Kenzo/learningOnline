@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 对sql进行分类化管理,sql隔离 -->
+<mapper namespace="com.zpf.mapper.ActorMapper">
+    <resultMap type="com.zpf.dto.Actor" id="ActorDTO">
+        <!--主键需要使用id标签对应,其余使用result对应-->
+        <id column="actor_id" property="actorId"/>
+        <result column="FIRST_NAME" property="firstName"/>
+        <result column="LAST_NAME" property="lastName"/>
+        <result column="LAST_UPDATE" property="lastUpdate"/>
+    </resultMap>
+    <!--
+     #{}:表示一个占位符,
+     #{id}:id表示接受输入的参数,参数就是id,如果输入的参数是简单类型,#{}中参数名可以任意
+     命名可以写成value或其他
+     -->
+    <select id="findActorById" resultMap="ActorDTO">
+        SELECT * FROM actor
+        <!--<where>-->
+            <!--<if test="actorId !=null" >-->
+                <!--AND actor_id LIKE concat('%', concat(#{actorId, jdbcType=DECIMAL}, '%')-->
+            <!--</if>-->
+        <!--</where>-->
+    </select>
+</mapper>

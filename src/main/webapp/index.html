@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="o-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>还有很长的路要走</title>
+    <link rel="shortcut icon" href="jpg/school.ico">
+    <link rel="stylesheet" href="https://static.shiyanlou.com/static/font-awesome//4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://static.shiyanlou.com/static/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://static.shiyanlou.com/static/bootstrap-switch/3.3.2/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="https://static.shiyanlou.com/static/bootstrap-tour/0.11.0/css/bootstrap-tour.min.css">
+    <link rel="stylesheet" href="https://static.shiyanlou.com/static/bootstrap-table/1.11.0/bootstrap-table.min.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        /* modal 模态框*/
+        #invite-user .modal-body {
+            overflow: hidden;
+        }
+
+        #invite-user .modal-body .form-label {
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        #invite-user .modal-body .form-invite {
+            width: 80%;
+            padding: 6px 12px;
+            background-color: #eeeeee;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        #invite-user .modal-body .msg-modal-style {
+            background-color: #7dd383;
+            margin-top: 10px;
+            padding: 6px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        #invite-user .modal-body .modal-flash {
+            position: absolute;
+            top: 53px;
+            right: 74px;
+            z-index: 999;
+        }
+
+        .home-section .home-section-footer {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .home-section .home-section-footer a {
+            display: inline-block;
+            width: 220px;
+            padding: 12px;
+            color: #666;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid gainsboro;
+            border-radius: 40px;
+            letter-spacing: 4px;
+            background: whitesmoke;
+
+            letter-spacing: 4px;
+            text-shadow: 0 0 1px #999;
+            box-shadow: 0 2px 2px 1px ghostwhite;
+        }
+        .home-section .home-section-footer a:hover {
+            background: lightgray;
+            box-shadow: 0 2px 2px 1px whitesmoke;
+            color: #30373e;
+        }
+
+        /*学习主页*/
+        .home-section {
+            padding: 70px 0;
+            background: #f7f7f7;
+        }
+        .container {
+            margin-right: auto;
+            margin-left: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .home-section .home-section-header {
+            margin-bottom: 70px;
+            text-align: center;
+        }
+        .home-section .home-section-title {
+            margin-bottom: 10px;
+            color: whitesmoke;
+            font-size: 30px;
+        }
+        .home-section .home-section-desc {
+            color: whitesmoke;
+            font-size: 16px;
+        }
+
+        .learn-path-name {
+            padding: 30px 0 15px;
+            color: #666;
+            font-size: 18px;
+        }
+        .learn-path-courses {
+             padding: 0 0 30px;
+             color: #a4a4a4;
+             font-size: 14px;
+         }
+        .learn-path-item {
+            position: relative;
+            bottom: 0;
+            display: block;
+            margin-bottom: 30px;
+            text-align: center;
+            background: #fff;
+            box-shadow: 0 1px 2px 0 #ddd;
+            transition: bottom .1s;
+        }
+        .learn-path-item:hover{
+            bottom:15px;
+            box-shadow: 10px 10px 5px white;
+        }
+        /*开始学习按钮*/
+        .home-courses-btn {
+            display: inline-block;
+            padding: 13px 50px;
+            color: #fff;
+            background: #0193b7;
+            font-size: 15px;
+            letter-spacing: 4px;
+            border: 1px solid #063e53;
+            border-radius: 20px;
+            text-shadow: 0 0 1px #999;
+            box-shadow: 0 2px 2px 1px #063e53;
+            width: 200px;
+            height: 50px;
+            margin-top: 40px;
+        }
+        .home-courses-btn:focus,.home-courses-btn:hover{
+            background: deepskyblue;
+            border: 1px solid dodgerblue;
+        }
+
+        /*主页特点展示*/
+        .home-features {
+            padding: 70px;
+            background: #d1c5b7;
+            color: #666;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .home-header .navbar-nav .dropdown .dropdown-menu {
+            left: -30px;
+            min-width: 130px;
+            text-align: center;
+            border-width: 0;
+            background: white;
+        }
+        .navbar-nav>li>.dropdown-menu {
+            margin-top: 0;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            list-style: none;
+            font-size: 14px;
+            text-align: left;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top home-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#header-navbar-collapse" aria-expanded="false">
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="jpg/school.ico" width="80" height="80">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="header-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown " onmouseover="show1()" onmouseout="hide1()">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        课程 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" id="show1">
+                        <li><a class="" href="/courses/">全部课程</a></li>
+                        <li><a class="" href="/courses/?status=preview">即将上线</a></li>
+                        <li><a class="" href="/developer">开发者</a></li>
+                    </ul>
+                    <script>
+                        function show1(){
+                            document.getElementById("show1").style.display="block";
+                        }
+                        function hide1(){
+                            document.getElementById("show1").style.display="none";
+                        }
+                    </script>
+                </li>
+                <li class="">
+                    <a href="/questions/">讨论区</a>
+                </li>
+                <li class=" new-nav logo-1111">
+                    <a href="javascript:alert('该功能暂未开放')">会员</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right header-sign">
+                <li><a class="sign-in" data-sign="signin" href="#sign-modal" data-toggle="modal">登录</a></li>
+                <li><a class="sign-up" data-sign="signup" href="#sign-modal" data-toggle="modal">注册</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" action="/search" method="get" role="search">
+                <div class="form-group">
+                    <label><i class="fa fa-search"></i></label>
+                    <input type="text" class="form-control" name="search" autocomplete="off" placeholder="搜索 课程/问答">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="layout layout-margin-top layout-fullscreen">
+    <div class="container">
+    </div>
+    <div class="carousel slide" id="carousel-generic" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="jpg/indexback.jpg">
+                <div class="carousel-caption carousel-intro">
+                    <font size="20">
+                            <div>「以大多数人的努力程度之低，</div>
+                            <p>根本轮不到拼天赋」</p>
+                        </font>
+                    <a class="home-courses-btn" href="/courses/">开始学习</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-section learn-path" style="background:url('jpg/top.jpg')no-repeat">
+        <div class="container">
+            <div class="home-section-header">
+                <div class="home-section-title">学习路径</div>
+                <div class="home-section-desc">12条完整的职业学习路线图，带你从入门到进阶</div>
+            </div>
+            <div class="row learn-path-body">
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="#">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741005890.png">
+                        <div class="learn-path-name">新手入门</div>
+                        <div class="learn-path-courses">
+                            6门课程
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="/paths/python">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741028787.png">
+
+                        <div class="learn-path-name">Python研发工程师</div>
+                        <div class="learn-path-courses">
+                            78门课程
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="/paths/cpp">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741048998.png">
+
+                        <div class="learn-path-name">C++ 研发工程师</div>
+                        <div class="learn-path-courses">
+                            28门课程
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="/paths/bigdata">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741070013.png">
+
+                        <div class="learn-path-name">大数据工程师</div>
+                        <div class="learn-path-courses">
+                            33门课程
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="/paths/linuxsys">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741143862.png">
+                        <div class="learn-path-name">Linux运维工程师</div>
+                        <div class="learn-path-courses">
+                            33门课程
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="/paths/java">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741175055.png">
+                        <div class="learn-path-name">Java研发工程师</div>
+                        <div class="learn-path-courses">
+                            24门课程
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="/paths/php">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741188918.png">
+
+                        <div class="learn-path-name">PHP研发工程师</div>
+                        <div class="learn-path-courses">
+                            27门课程
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <a class="learn-path-item" href="/paths/web">
+                        <img src="https://dn-simplecloud.shiyanlou.com/1487741210305.png">
+                        <div class="learn-path-name">Web前端工程师</div>
+                        <div class="learn-path-courses">
+                            30门课程
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="home-section-footer">
+                <a href="/paths/">查看全部</a>
+            </div>
+        </div>
+    </div>
+    <div class="home-features">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <a><img src="https://static.shiyanlou.com/img/introduceContainer1.gif"></a>
+
+                    <div class="home-features-text">丰富全面的计算机实验课程</div>
+                </div>
+                <div class="col-sm-3">
+                    <a><img src="https://static.shiyanlou.com/img/introduceContainer2.gif"></a>
+
+                    <div class="home-features-text">在线编程环境，1秒启动</div>
+                </div>
+                <div class="col-sm-3">
+                    <a><img src="https://static.shiyanlou.com/img/introduceContainer3.gif"/></a>
+
+                    <div class="home-features-text">每天一个项目课，丰富你的项目经验</div>
+                </div>
+                <div class="col-sm-3">
+                    <a><img src="https://static.shiyanlou.com/img/introduceContainer4.gif"/></a>
+
+                    <div class="home-features-text">有效学习时间，真实记录你的代码生涯</div>
+                </div>
+            </div>
+            <div class="home-section-footer home-features-footer">
+                <a class="home-courses-btn" href="/courses/">开始学习</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://static.shiyanlou.com/static/ravenjs/3.7.0/raven.min.js"></script>
+<!--底部通用-->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 clearfix footer-col">
+                <div class="footer-slogan" style="margin-left: -50px">
+                    <img src="jpg/Head.jpg" width="100" height="100">「博观而约取，厚积而薄发。君子藏器于身，待时而动」
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weixin-item" onmouseover="show()" onmouseout="hide()">
+                        <i class="fa fa-weixin"></i>
+                        <div class="footer-weixin" id="show">
+                            <img src="https://static.shiyanlou.com/img/footer-weixin.png">
+                        </div>
+                        <script>
+                            function show(){
+                                document.getElementById("show").style.display="block";
+                            }
+                            function hide(){
+                                document.getElementById("show").style.display="none";
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-weibo-item">
+                        <a href="http://weibo.com" target="_blank">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="social-item footer-github-item">
+                        <a href="https://github.com/LoseMyself-Kenzo" target="_blank">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">公司</div>
+                <a href="/aboutus" target="_blank">关于我们</a><br>
+                <a href="/contact" target="_blank">联系我们</a><br>
+                <a href="http://www.simplecloud.cn/jobs.html" target="_blank">加入我们</a><br>
+                <a href="https://blog.shiyanlou.com" target="_blank">技术博客</a><br>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">合作</div>
+                <a href="/contribute" target="_blank">我要投稿</a><br>
+                <a href="/labs" target="_blank">教师合作</a><br>
+                <a href="/edu/" target="_blank">高校合作</a><br>
+                <a href="/friends" target="_blank">友情链接</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">服务</div>
+                <a href="/bootcamp/" target="_blank">实战训练营</a><br>
+                <a href="/vip" target="_blank">会员服务</a><br>
+                <a href="/courses/reports" target="_blank">实验报告</a><br>
+                <a href="/questions/?tag=%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank">常见问题</a><br>
+                <a href="/privacy" target="_blank">隐私条款</a>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-2 footer-col">
+                <div class="col-title">学习路径</div>
+                <a href="/paths/python" target="_blank">Python学习路径</a><br>
+                <a href="/paths/linuxdev" target="_blank">Linux学习路径</a><br>
+                <a href="/paths/bigdata" target="_blank">大数据学习路径</a><br>
+                <a href="/paths/java" target="_blank">Java学习路径</a><br>
+                <a href="/paths/php" target="_blank">PHP学习路径</a><br>
+                <a href="/paths/" , target="_blank">全部</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center copyright">
+        <font size="1px">
+            <span>Copyright @2017-2020 LoseMyself在线学习</span>
+            <span>|</span>
+            <a href="" target="_blank">X ICP备xxxxxxxx号</a>
+         </font>
+    </div>
+</div>
+</body>
+</html>
