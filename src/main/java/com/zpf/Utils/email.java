@@ -20,10 +20,10 @@ public class email {
         boolean isOk = true;
 
         // 邮箱账号
-        final String userName = "18163914274@163.com";
+        final String userName = "example@163.com";
         // 邮箱授权码
-        final String password = "zpf950220";
-        String fromAddress = "18163914274@163.com";
+        final String password = "***";
+        String fromAddress = "example@163.com";
         String toAddress = to;
         String subject = "忘记密码验证码";
         String content = "您邮箱为: " + to+ "的账号,此次验证码为: "+ IC +".";
