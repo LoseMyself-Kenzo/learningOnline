@@ -215,39 +215,31 @@
         <div class="col-md-9 layout-body">
             <div class="content" style="margin-top: 10px">
                 <ul class="nav nav-tabs" id="top">
-                    <li class="active">
+                    <li>
                         <a href="${base.contextPath}/User">实验课程</a>
                     </li>
-                    <li>
-                        <%--<a href="${base.contextPath}/report">实验报告</a>--%>
-                        <a href="javascript:void(0)" onclick="jump('/report')">实验报告</a>
+                    <li class="active">
+                        <a href="${base.contextPath}/report">实验报告</a>
                     </li>
                     <li>
-                        <%--<a href="${base.contextPath}/profile">个人设置</a>--%>
-                        <a href="javascript:void(0)" onclick="jump('/profile')">个人设置</a>
+                        <a href="${base.contextPath}/profile">个人设置</a>
                     </li>
                 </ul>
-                <script>
-                    function  jump(url) {
-                        window.location.href = "${base.contextPath}" + url;
-                    }
-                </script>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active">
                         <div class="row">
                             <div class="col-md-12">
                                 <a>
-                                    <span class="label label-success">学过的</span>
+                                    <span class="label label-success">已投递过</span>
                                 </a>
                                 <a href="/user">
-                                    <span class="label label-default">关注的</span>
+                                    <span class="label label-default">已通过</span>
                                 </a>
                             </div>
-                            <div class="col-md-12 empty-tips">还没有学过课程哦~</div>
+                            <div class="col-md-12 empty-tips">还没有上传的报告哦~</div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

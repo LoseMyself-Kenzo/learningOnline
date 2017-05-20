@@ -124,7 +124,7 @@
                         </a>
                         <ul class="dropdown-menu" id="show2">
                             <li><a class="" href="javascript:void(0)" onclick="toUser()">个人主页</a></li>
-                            <li><a class="" href="/User/profile?user_id={user_id}">个人设置</a></li>
+                            <li><a class="" href="/profile">个人设置</a></li>
                         </ul>
                     </li>
                     <input type="hidden" id="userId" name="user_id" value="${user_id}">

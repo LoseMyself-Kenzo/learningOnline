@@ -15,6 +15,8 @@
           href="https://static.shiyanlou.com/static/bootstrap-switch/3.3.2/css/bootstrap-switch.min.css">
     <link rel="stylesheet" href="https://static.shiyanlou.com/static/bootstrap-tour/0.11.0/css/bootstrap-tour.min.css">
     <link rel="stylesheet" href="https://static.shiyanlou.com/static/bootstrap-table/1.11.0/bootstrap-table.min.css">
+
+
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
@@ -122,7 +124,7 @@
                         </a>
                         <ul class="dropdown-menu" id="show2">
                             <li><a class="" href="javascript:void(0)" onclick="toUser()">个人主页</a></li>
-                            <li><a class="" href="/User/profile?user_id={user_id}">个人设置</a></li>
+                            <li><a class="" href="/profile">个人设置</a></li>
                         </ul>
                     </li>
                     <input type="hidden" id="userId" name="user_id" value="${user_id}">

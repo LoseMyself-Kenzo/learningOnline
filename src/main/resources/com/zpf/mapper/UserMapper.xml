@@ -23,12 +23,14 @@
           <set>
               last_update_date = now(),
               <if test="password != null">password = #{password},</if>
+              <if test="userName != null">user_name = #{userName},</if>
               <if test="roleId != null">role_id = #{roleId},</if>
-              <if test="birthday != null">birthday = #{birthday},</if>
-              <if test="address != null">address = #{address},</if>
               <if test="ic != null">ic = #{ic},</if>
               <if test="classTableId != null">class_table_id = #{classTableId},</if>
-              <if test="email != null">email = #{email}</if>
+              <if test="email != null">email = #{email},</if>
+              <if test="school !=null">school = #{school},</if>
+              <if test="isWork != null">is_work = #{isWork},</if>
+              <if test="address != null">address = #{address},</if>
           </set>
         <where>
             <if test="userId != null"> user_id = #{userId}</if>

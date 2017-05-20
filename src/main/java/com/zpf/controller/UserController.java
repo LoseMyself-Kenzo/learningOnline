@@ -29,63 +29,86 @@ public class UserController {
 
     //  跳转个人资料界面
     @RequestMapping(value = "/user",method = RequestMethod.GET)
-    public ModelAndView toUser(@RequestParam("user_id") Long id){
-        ModelAndView modelAndView = new ModelAndView("user");
-
-        User dto = new User().setUserId(id);
-
-        dto  = service.queryUser(dto);
-        modelAndView.addObject("head",dto.getHead());
-        modelAndView.addObject("user_id",dto.getUserId());
-        modelAndView.addObject("email",dto.getEmail());
-        modelAndView.addObject("model1","1");
-        modelAndView.addObject("model2",null);
-        modelAndView.addObject("model3",null);
-
-        return modelAndView;
+    public void toUser(@RequestParam("user_id") Long id,HttpServletResponse response,HttpServletRequest request) throws IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("user_id",id);
+        response.sendRedirect("/User");
     }
 
     //  个人所学课程
     @RequestMapping(value = "/User",method = RequestMethod.GET)
-    public ResponseDate user(HttpSession session, HttpServletRequest request, HttpServletResponse response, @RequestParam("user_id")Long id) throws IOException {
-
-        // 返回对象值
-        ResponseDate responseDate = new ResponseDate();
-
+    public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        Long id = (Long)session.getAttribute("user_id");
+        ModelAndView modelAndView = new ModelAndView("user");
         User dto = new User().setUserId(id);
+        dto  = service.queryUser(dto);
+        modelAndView.addObject("head",dto.getHead());
+        modelAndView.addObject("user_id",dto.getUserId());
+        modelAndView.addObject("email",dto.getEmail());
+        return modelAndView;
 
-        try{
-            dto = service.queryUser(dto);
-        }catch (NullPointerException e){
-            dto = null;
-            responseDate.setMessage("该账号不存在!");
-            response.sendRedirect("index.jsp");
-        }
-
-        if(dto != null){
-            responseDate.setMessage("success");
-            responseDate.setList(Collections.singletonList(dto));
-        }
-
-        return responseDate;
     }
 
     //  个人实验报告
-    @RequestMapping(value = "/User/report",method = RequestMethod.GET)
-    public ResponseDate reports(HttpServletRequest request,HttpServletResponse response,@RequestParam("user_id") Long id){
-        ResponseDate responseDate = new ResponseDate();
+    @RequestMapping(value = "/report")
+    public ModelAndView reports(HttpServletRequest request,HttpServletResponse response){
+        ModelAndView modelAndView = new ModelAndView("report");
 
+        HttpSession session = request.getSession();
 
+        Long id = (Long)session.getAttribute("user_id");
 
-        return responseDate;
+        User dto = new User().setUserId(id);
+
+        dto  = service.queryUser(dto);
+
+        modelAndView.addObject("head",dto.getHead());
+
+        return modelAndView;
     }
 
     //  个人资料设置界面
-    @RequestMapping(value = "/User/profile",method = RequestMethod.GET)
-    public ResponseDate profile(HttpServletResponse response,HttpServletRequest request,@RequestParam("user_id")Long id){
-        ResponseDate responseDate = new ResponseDate();
+    @RequestMapping(value = "/profile")
+    public ModelAndView profile(HttpServletResponse response,HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("profile");
 
+        HttpSession session = request.getSession();
 
-        return responseDate;
+        Long id = (Long)session.getAttribute("user_id");
+
+        User dto = new User().setUserId(id);
+
+        dto  = service.queryUser(dto);
+
+        modelAndView.addObject("head",dto.getHead());
+        modelAndView.addObject("school",dto.getSchool());
+        modelAndView.addObject("is_work",dto.getIsWork());
+        modelAndView.addObject("address",dto.getAddress());
+        modelAndView.addObject("username",dto.getUserName());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/changeProfile")
+    public ModelAndView changeProfile(User d,HttpServletRequest request) throws IOException {
+
+        HttpSession session = request.getSession();
+
+        ModelAndView modelAndView =new ModelAndView("profile");
+
+        int i = 0;
+        i = service.updateUser(d);
+        if(i == 0 ){
+            modelAndView.addObject("msg","更新错误,请重新输入!");
+        }
+        User dto = service.queryUser(d);
+
+        modelAndView.addObject("head",dto.getHead());
+        modelAndView.addObject("school",dto.getSchool());
+        modelAndView.addObject("is_work",dto.getIsWork());
+        modelAndView.addObject("address",dto.getAddress());
+        modelAndView.addObject("username",dto.getUserName());
+        session.setAttribute("username",dto.getUserName());
+        return modelAndView;
     }
 }
