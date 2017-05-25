@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpf.mapper.ClassTableMapper">
+    <resultMap id="BaseResultMap" type="com.zpf.dto.ClassTable">
+        <id column="class_table_id" property="classTableId" jdbcType="DECIMAL" />
+        <result column="class_head_id" property="classHeadId" jdbcType="DECIMAL" />
+        <result column="class_line_id" property="classLineId" jdbcType="DECIMAL" />
+        <result column="user_id" property="userID" jdbcType="DECIMAL" />
+        <result column="creation_date" property="creationDate" jdbcType="DATE" />
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE" />
+    </resultMap>
+
+
+
+
+</mapper>
