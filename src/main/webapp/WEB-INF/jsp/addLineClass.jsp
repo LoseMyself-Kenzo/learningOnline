@@ -28,18 +28,30 @@
                             </div>
                             <div class="get" style="margin-left: 125px;margin-top: 10px">
                                 <c:forEach items="${list}" var ="l">
-                                    <form id="up" method="post" enctype="multipart/form-data" style="border: solid black 2px;width: 300px;margin-top: 20px">
+                                    <form id="up" method="post" enctype="multipart/form-data" style="border: solid lightgray 2px;width: 300px;margin-top: 20px">
                                         <input hidden id="Id${l.number}" value="${l.classLineId}">
-                                        第${l.number}小节&nbsp;&nbsp;小节名称<input style="width: 150px;" id="name${l.number}" class="form-control"name="classLineName">
+                                        <label>第${l.number}小节&nbsp;&nbsp;小节名称</label><input style="width: 150px;" id="name${l.number}" class="form-control"name="classLineName" onblur="isNull(this)">
                                         <input type="file" name="myfile" id="myfile" style="float: left;margin-top: 5px"/>
-                                        <input type="button" value="上传" id="${l.number}" onclick="up(this)"><br/>
+                                        <input type="button" value="上传选中视频" class="btn btn-primary" id="${l.number}" onclick="up(this)" style="margin-top: 10px">
                                         <input hidden type="text" disabled id="url${l.number}">
-                                        <input type="button" id="${l.number}" value="创建课时" onclick="commit(this)">
+                                        <button disabled="disabled" class="btn btn-primary" type="button" id="${l.number}${l.number}" onclick="commit(this)" style="margin-top:10px;width: 300px">创建课时</button>
                                     </form>
                                 </c:forEach>
                             </div>
                             <script>
                                 var id = 0;
+                                function isNull(obj) {
+                                    var v = obj.value;
+                                    var str = obj.id;
+                                    var s = str.charAt(str.length-1);
+                                    console.log(v)
+                                    if(v == null || v == ""){
+                                        $("#"+s+s).attr({"disabled":"disabled"});
+                                        alert("请输入课程名称!");
+                                    }else{
+                                        $("#"+s+s).removeAttr("disabled")
+                                    }
+                                }
                                 function commit(obj) {
                                     var classLineId = $("#Id"+id).val();
                                     var classLineName = $("#name"+id).val();
@@ -51,7 +63,7 @@
                                         url: "${base.contextPath}/upLine",
                                         data:{classLineId:classLineId,classLineName:classLineName,url:url},
                                         success: function (data) {
-                                            console.log(data)
+                                            alert("update "+data.message);
                                         }
                                     })
                                 }
@@ -60,8 +72,6 @@
                                     id = obj.id;
                                     var formData  = new FormData();
                                     formData.append("myfile", document.getElementById("myfile").files[0]);
-                                    formData.append("classLineName",$("#classLineName").val());
-                                    formData.append("classLineId",$("#classLineId").val());
                                     $.ajax({
                                         type: "POST",
 //                                        contentType: "application/json",
@@ -86,7 +96,7 @@
                                     })
                                 }
                             </script>
-                            <button id="b" class="btn btn-primary" type="submit" style="margin-top:10px;margin-left:125px;width: 300px">确定</button>
+                            <a id="b" class="btn btn-primary" href="${base.contextPath}/index" style="margin-top:10px;margin-left:125px;width: 300px">创建完成,返回主页</a>
                     </div>
                 </div>
             </div>

@@ -17,12 +17,11 @@
     </insert>
 
     <update id="updateLine">
-        UPDATE class_Line
+        UPDATE class_line
         <set>
             last_update_date = now(),
             <if test="classLineName != null">class_line_name = #{classLineName},</if>
             <if test="url != null">url = #{url},</if>
-            <if test="tagId != null">AND tag_id = #{tagId}</if>
         </set>
         <where>
             <if test="classLineId != null"> class_Line_id = #{classLineId}</if>
