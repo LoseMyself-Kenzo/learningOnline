@@ -32,7 +32,10 @@
     <select id="queryLine" resultMap="BaseResultMap" parameterType="com.zpf.dto.ClassHead">
         SELECT *
         FROM class_line
-        WHERE class_line_id = #{classLineId}
+        <where>
+            <if test="classHeadId != null"> class_head_id = #{classHeadId}</if>
+            <if test="classLineId != null">AND class_line_name = #{classLineId}</if>
+        </where>
         ORDER BY number
     </select>
 

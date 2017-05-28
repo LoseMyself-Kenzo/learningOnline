@@ -11,7 +11,7 @@
         <result column="tag_id" property="tagId" jdbcType="DECIMAL" />
     </resultMap>
 
-    <insert id="addClass" parameterType="com.zpf.dto.ClassHead" useGeneratedKeys="true" keyProperty="classHeadId">
+    <insert id="addClass" parameterType="com.zpf.dto.ClassHead">
         INSERT INTO class_head (class_head_name,description,create_by,creation_date,last_update_date)
         VALUES (#{classHeadName},#{description},#{createBy},now(),now())
     </insert>

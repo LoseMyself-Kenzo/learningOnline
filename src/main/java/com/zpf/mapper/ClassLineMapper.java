@@ -16,5 +16,5 @@ public interface ClassLineMapper {
 
     int updateLine(ClassLine dto);
 
-    List<ClassLine> queryLine(Long id);
+    List<ClassLine> queryLine(ClassLine dto);
 }

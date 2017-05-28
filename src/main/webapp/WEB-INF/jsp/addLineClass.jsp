@@ -15,61 +15,78 @@
             <div class="content">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3" style="font-size: 20px;margin-top: 6%;" align="center">
-                        新建课程
+                        新建课时
                         <hr style="width:350px;height:1px;border:none;border-top:1px solid #555555;" />
                     </div>
                     <div class="col-md-6 col-md-offset-3">
-                        <form method="GET" action="${base.contextPath}/addClass">
                             <div class="control-group" style="margin-left: 125px;margin-top: 8px">
-                                <label>新建课程名称</label>
-                                <input class="form-control" style="width: 150px;" id="name" name="classHeadName" type="text" onblur="isHave(this)">
+                                <label>课程名称</label>
+                                <c:if test="${!empty classHeadName}">
+                                    <input readonly class="form-control" style="width: 150px;" type="text" value="${classHeadName}">
+                                </c:if>
                                 <span class="help-inline"></span>
                             </div>
+                            <div class="get" style="margin-left: 125px;margin-top: 10px">
+                                <c:forEach items="${list}" var ="l">
+                                    <form id="up" method="post" enctype="multipart/form-data" style="border: solid black 2px;width: 300px;margin-top: 20px">
+                                        <input hidden id="Id${l.number}" value="${l.classLineId}">
+                                        第${l.number}小节&nbsp;&nbsp;小节名称<input style="width: 150px;" id="name${l.number}" class="form-control"name="classLineName">
+                                        <input type="file" name="myfile" id="myfile" style="float: left;margin-top: 5px"/>
+                                        <input type="button" value="上传" id="${l.number}" onclick="up(this)"><br/>
+                                        <input hidden type="text" disabled id="url${l.number}">
+                                        <input type="button" id="${l.number}" value="创建课时" onclick="commit(this)">
+                                    </form>
+                                </c:forEach>
+                            </div>
                             <script>
-                                function  isHave(obj) {
-                                    if(obj.value == null || obj.value == ""){
-                                        alert("课程名不可为空");
-                                    }else {
-                                        $.ajax({
-                                            type: "GET",
-                                            contentType: "application/json",
-                                            async: false,
-                                            url: "${base.contextPath}/isH?name="+ obj.value,
-                                            success: function (data) {
-                                                if(data.total != 0){
-                                                    alert("该课程名已存在，请重新输入！");
-                                                    $("#b").attr({"disabled":"disabled"});
-                                                    obj.value = null;
-                                                }
-                                                if(data.total == 0){
-                                                    $("#b").removeAttr("disabled")
-                                                }
-                                            }
-                                        });
-                                    }
+                                var id = 0;
+                                function commit(obj) {
+                                    var classLineId = $("#Id"+id).val();
+                                    var classLineName = $("#name"+id).val();
+                                    var url = $("#url"+id).val();
+                                    $.ajax({
+                                        type: "POST",
+//                                        contentType: "application/json",
+                                        async: false,
+                                        url: "${base.contextPath}/upLine",
+                                        data:{classLineId:classLineId,classLineName:classLineName,url:url},
+                                        success: function (data) {
+                                            console.log(data)
+                                        }
+                                    })
+                                }
+
+                                function up(obj) {
+                                    id = obj.id;
+                                    var formData  = new FormData();
+                                    formData.append("myfile", document.getElementById("myfile").files[0]);
+                                    formData.append("classLineName",$("#classLineName").val());
+                                    formData.append("classLineId",$("#classLineId").val());
+                                    $.ajax({
+                                        type: "POST",
+//                                        contentType: "application/json",
+                                        async: false,
+                                        url: "${base.contextPath}/addVideo",
+                                        // 告诉jQuery不要去设置Content-Type请求头
+                                        contentType: false,
+                                        /**
+                                         * 必须false才会避开jQuery对 formdata 的默认处理
+                                         * XMLHttpRequest会对 formdata 进行正确的处理
+                                         */
+                                        processData: false,
+                                        beforeSend:function(){
+                                            console.log("正在进行，请稍候");
+                                        },
+                                        data:formData,
+                                        success: function (data) {
+                                            console.log(data)
+                                            console.log(id)
+                                            $("#url"+id).val(data.message);
+                                        }
+                                    })
                                 }
                             </script>
-                            <div class="get" style="margin-left: 125px;margin-top: 10px">
-                                <label>课节数</label>
-                                <select class="form-control" style="width: 150px" name="number">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                </select>
-                            </div>
-                            <div class="get" style="margin-left: 125px;margin-top: 10px">
-                                <label>描述</label>
-                                <textarea name="description" style="width: 300px" rows="5" cols="20" class="form-control">课程描述</textarea>
-                            </div>
-                            <button id="b" disabled="disabled" class="btn btn-primary" type="submit" style="margin-top:10px;margin-left:125px;width: 300px">确定</button>
-                        </form>
+                            <button id="b" class="btn btn-primary" type="submit" style="margin-top:10px;margin-left:125px;width: 300px">确定</button>
                     </div>
                 </div>
             </div>

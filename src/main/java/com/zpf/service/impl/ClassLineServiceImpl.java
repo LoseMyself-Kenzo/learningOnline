@@ -20,7 +20,6 @@ public class ClassLineServiceImpl implements ClassLineService {
     @Autowired
     private ClassLineMapper mapper;
 
-
     @Override
     public int addClass(ClassLine dto) {
         return mapper.addClass(dto);
@@ -32,7 +31,7 @@ public class ClassLineServiceImpl implements ClassLineService {
     }
 
     @Override
-    public List<ClassLine> queryLine(Long id) {
+    public List<ClassLine> queryLine(ClassLine id) {
         return mapper.queryLine(id);
     }
 }
