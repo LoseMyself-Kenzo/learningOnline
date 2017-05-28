@@ -16,6 +16,17 @@ public class ClassLine extends BaseDTO{
 
     private Long number;
 
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public ClassLine setUrl(String url) {
+        this.url = url;
+        return this;
+    }
+
     public Long getClassLineId() {
         return classLineId;
     }

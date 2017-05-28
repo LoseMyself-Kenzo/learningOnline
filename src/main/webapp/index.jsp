@@ -142,8 +142,6 @@
                             document.getElementById("show2").style.display = "none";
                         }
                     </script>
-
-
                     <li class="sign"><a href="${base.contextPath}/logout">退出</a></li>
                 </ul>
                 <script>

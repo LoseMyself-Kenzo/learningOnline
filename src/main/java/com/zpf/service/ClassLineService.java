@@ -1,4 +1,4 @@
-package com.zpf.mapper;
+package com.zpf.service;
 
 import com.zpf.dto.ClassLine;
 
@@ -8,10 +8,9 @@ import java.util.List;
  * @author :LoseMyself    pengfei.zheng@hand-china.com
  * @version :1.0
  * @description :
- * @date :2017/5/25 13:59
+ * @date :2017/5/28 14:25
  */
-public interface ClassLineMapper {
-
+public interface ClassLineService {
     int addClass(ClassLine dto);
 
     int updateLine(ClassLine dto);

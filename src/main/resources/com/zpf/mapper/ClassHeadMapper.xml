@@ -11,7 +11,30 @@
         <result column="tag_id" property="tagId" jdbcType="DECIMAL" />
     </resultMap>
 
+    <insert id="addClass" parameterType="com.zpf.dto.ClassHead" useGeneratedKeys="true" keyProperty="classHeadId">
+        INSERT INTO class_head (class_head_name,description,create_by,creation_date,last_update_date)
+        VALUES (#{classHeadName},#{description},#{createBy},now(),now())
+    </insert>
 
+    <select id="queryHead" resultMap="BaseResultMap" parameterType="com.zpf.dto.ClassHead">
+        SELECT *
+        FROM class_head
+        <where>
+            <if test="classHeadId != null"> class_head_id = #{classHeadId}</if>
+            <if test="classHeadName != null">AND class_head_name = #{classHeadName}</if>
+        </where>
+    </select>
 
-
+    <update id="updateHead">
+        UPDATE class_head
+        <set>
+            last_update_date = now(),
+            <if test="classHeadName != null">class_head_name = #{classHeadName},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="tagId != null">AND tag_id = #{tagId}</if>
+        </set>
+        <where>
+            <if test="classHeadId != null"> class_head_id = #{classHeadId}</if>
+        </where>
+    </update>
 </mapper>

@@ -233,21 +233,20 @@
                     }
                 </script>
                 <div class="tab-content">
+                    <c:if test="${!empty role}">
+                        <span class="btn btn-primary" style="margin-top:10px;width: 100px" onclick="jump('/tech')">新建课程</span>
+                    </c:if>
                     <div role="tabpanel" class="tab-pane active">
                         <div class="row">
                             <div class="col-md-12">
                                 <a>
                                     <span class="label label-success">学过的</span>
                                 </a>
-                                <a href="/user">
-                                    <span class="label label-default">关注的</span>
-                                </a>
                             </div>
                             <div class="col-md-12 empty-tips">还没有学过课程哦~</div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

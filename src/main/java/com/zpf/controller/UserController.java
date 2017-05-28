@@ -1,6 +1,5 @@
 package com.zpf.controller;
 
-import com.zpf.dto.ResponseDate;
 import com.zpf.dto.User;
 import com.zpf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.Collections;
 
 /**
  * @author :LoseMyself    pengfei.zheng@hand-china.com
@@ -46,6 +44,9 @@ public class UserController {
         modelAndView.addObject("head",dto.getHead());
         modelAndView.addObject("user_id",dto.getUserId());
         modelAndView.addObject("email",dto.getEmail());
+        if(dto.getRoleId() == 3){
+            modelAndView.addObject("role",dto.getRoleId());
+        }
         return modelAndView;
 
     }

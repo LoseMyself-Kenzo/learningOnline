@@ -8,9 +8,33 @@
         <result column="creation_date" property="creationDate" jdbcType="DATE" />
         <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE" />
         <result column="number" property="number" jdbcType="DECIMAL" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
     </resultMap>
 
+    <insert id="addClass" parameterType="com.zpf.dto.ClassLine" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO class_line (class_head_id,number,creation_date,last_update_date)
+        VALUES (#{classHeadId},#{number},now(),now())
+    </insert>
 
+    <update id="updateLine">
+        UPDATE class_Line
+        <set>
+            last_update_date = now(),
+            <if test="classLineName != null">class_line_name = #{classLineName},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="tagId != null">AND tag_id = #{tagId}</if>
+        </set>
+        <where>
+            <if test="classLineId != null"> class_Line_id = #{classLineId}</if>
+        </where>
+    </update>
+
+    <select id="queryLine" resultMap="BaseResultMap" parameterType="com.zpf.dto.ClassHead">
+        SELECT *
+        FROM class_line
+        WHERE class_line_id = #{classLineId}
+        ORDER BY number
+    </select>
 
 
 </mapper>
