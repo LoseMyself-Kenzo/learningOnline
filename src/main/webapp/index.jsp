@@ -93,9 +93,8 @@
                         课程 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" id="show1">
-                        <li><a class="" href="/courses/">全部课程</a></li>
+                        <li><a class="" href="/courses">全部课程</a></li>
                         <li><a class="" href="/courses/?status=preview">即将上线</a></li>
-                        <li><a class="" href="/developer">开发者</a></li>
                     </ul>
                     <script>
                         function show1() {
@@ -180,7 +179,7 @@
                         <div>「以大多数人的努力程度之低，</div>
                         <p>根本轮不到拼天赋」</p>
                     </font>
-                    <a class="home-courses-btn" href="/courses/">开始学习</a>
+                    <a class="home-courses-btn" href="/courses">开始学习</a>
                 </div>
             </div>
         </div>

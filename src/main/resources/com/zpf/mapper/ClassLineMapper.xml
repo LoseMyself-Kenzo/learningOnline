@@ -33,7 +33,7 @@
         FROM class_line
         <where>
             <if test="classHeadId != null"> class_head_id = #{classHeadId}</if>
-            <if test="classLineId != null">AND class_line_name = #{classLineId}</if>
+            <if test="classLineId != null">AND class_line_id = #{classLineId}</if>
         </where>
         ORDER BY number
     </select>

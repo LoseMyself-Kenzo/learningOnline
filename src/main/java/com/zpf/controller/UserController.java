@@ -79,9 +79,7 @@ public class UserController {
         Long id = (Long)session.getAttribute("user_id");
 
         User dto = new User().setUserId(id);
-
         dto  = service.queryUser(dto);
-
         modelAndView.addObject("head",dto.getHead());
         modelAndView.addObject("school",dto.getSchool());
         modelAndView.addObject("is_work",dto.getIsWork());
